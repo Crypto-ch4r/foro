@@ -1,4 +1,8 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { ApiRestService } from '../api-rest.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -9,12 +13,23 @@ export class LoginComponent implements OnInit {
   user:string = 'admin';
   pass:string = '';
 
-  constructor() { }
-
+  constructor(private rest: ApiRestService,
+    private router: Router,
+    private msg: ToastrService) { }
+    
   ngOnInit(): void {
   }
 
   entrar(){
-    alert('Hola pendeje pute vergue estupide' + this.user + " " + this.pass);
+    this.rest.login(this.user, this.pass).subscribe(
+      response => {
+        this.rest.setUser(response.user)
+        this.router.navigate(['/home'])
+        this.msg.success('Bienvenido')
+      },
+      error => {
+
+      }
+    )
   }
 }
