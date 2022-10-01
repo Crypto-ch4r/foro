@@ -1,4 +1,3 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ApiRestService } from '../api-rest.service';
 import { Router } from '@angular/router';
@@ -16,21 +15,21 @@ export class LoginComponent implements OnInit {
   constructor(private rest: ApiRestService,
     private router: Router,
     private msg: ToastrService) { }
-    
+
   ngOnInit(): void {
   }
 
   entrar(){
     this.rest.login(this.user, this.pass).subscribe(
       response => {
-        this.rest.setUser(response.user)
+        this.rest.setUser(response.user);
         localStorage.setItem('token', response.token)
-        this.router.navigate(['/home'])
-        this.msg.success('Bienvenido')
+        this.router.navigate(['/home']);
+        this.msg.info("Bienvenido");
       },
       error => {
-        this.msg.error('Error en el nombre de usuario o contraseña', error.status)
+        this.msg.error("Nombre de usuario o contraseña incorrecto", error.status)
       }
-    )
+    );
   }
 }

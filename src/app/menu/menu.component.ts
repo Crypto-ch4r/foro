@@ -1,3 +1,4 @@
+import { Serializer } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ApiRestService } from '../api-rest.service';
 
@@ -13,14 +14,15 @@ export class MenuComponent implements OnInit {
   constructor(private rest:ApiRestService) { }
 
   ngOnInit(): void {
-    //this.user = this.rest.getUser();
+    this.rest.getUser();
     this.rest.userObs$.subscribe(
       user => {
         this.user = user;
       }
     );
   }
-  salir(){
-    this.rest.setUser({id:0, username:'', role:''});
-  }
+salir(){
+  this.rest.setUser({id:0, username:'', role:''});
+}
+
 }

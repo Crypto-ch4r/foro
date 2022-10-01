@@ -6,8 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
@@ -16,13 +14,12 @@ import { MenuComponent } from './menu/menu.component';
 import { UsersComponent } from './users/users.component';
 
 const routes:Routes = [
-{path:'login',component:LoginComponent}, 
-{path:'home',component:HomeComponent}, 
-{path:'posts',component:PostComponent},
-{path:'users',component:UsersComponent},
-{path:'**',component:LoginComponent}
+  {path:'login',component:LoginComponent},
+  {path:'home',component:HomeComponent},
+  {path:'posts',component:PostComponent},
+  {path:'users',component:UsersComponent},
+  {path:'**',component:LoginComponent},
 ];
-
 
 @NgModule({
   declarations: [
@@ -36,7 +33,6 @@ const routes:Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-    AppRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
